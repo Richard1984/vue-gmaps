@@ -8,5 +8,5 @@
 </template>
 
 <script>
-export default (x => x.default || x )(require('./infoWindowImpl.js'))
+export default (x => x.default || x)(require('./infoWindowImpl.js'))
 </script>
