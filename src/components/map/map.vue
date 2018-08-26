@@ -17,8 +17,16 @@ export default (x => x.default || x )(require('./mapImpl.js'))
   position: relative;
 }
 
+.vue-map {
+  width: 100%;
+  height: 100%;
+}
+
 .vue-map-container .vue-map {
-  left: 0; right: 0; top: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   position: absolute;
 }
 .vue-map-hidden {
