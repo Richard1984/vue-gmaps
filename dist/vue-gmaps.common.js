@@ -6233,10 +6233,11 @@ function gmapApi() {
 /* concated harmony reexport Autocomplete */__webpack_require__.d(__webpack_exports__, "Autocomplete", function() { return autocomplete; });
 /* concated harmony reexport MountableMixin */__webpack_require__.d(__webpack_exports__, "MountableMixin", function() { return mountableMixin["a" /* default */]; });
 /* concated harmony reexport StreetViewPanorama */__webpack_require__.d(__webpack_exports__, "StreetViewPanorama", function() { return streetViewPanorama; });
+/* concated harmony reexport install */__webpack_require__.d(__webpack_exports__, "install", function() { return install; });
 /* concated harmony reexport gmapApi */__webpack_require__.d(__webpack_exports__, "gmapApi", function() { return gmapApi; });
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (install);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (/* Cannot get final name for export "default" in "./src/main.js" (known exports: Cluster install gmapApi, known reexports: loadGmapApi Marker Polyline Polygon Circle Rectangle InfoWindow Map PlaceInput MapElementMixin MapElementFactory Autocomplete MountableMixin StreetViewPanorama) */ undefined);
 
 
 

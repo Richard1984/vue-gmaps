@@ -47,7 +47,7 @@ export {loadGmapApi,
   MountableMixin,
   StreetViewPanorama}
 
-export default function install (Vue, options) {
+export function install (Vue, options) {
   // Set defaults
   options = {
     installComponents: true,
