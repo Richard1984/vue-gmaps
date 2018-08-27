@@ -23,8 +23,6 @@ export default (x => x.default || x)(require('./mapImpl.js'))
   top: 0;
   bottom: 0;
   position: absolute;
-  height: 100%;
-  width: 100%;
 }
 .vue-map-hidden {
   display: none;
