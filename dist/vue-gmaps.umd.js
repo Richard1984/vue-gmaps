@@ -173,34 +173,6 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 /***/ }),
 
-/***/ "097d":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// https://github.com/tc39/proposal-promise-finally
-
-var $export = __webpack_require__("5ca1");
-var core = __webpack_require__("8378");
-var global = __webpack_require__("7726");
-var speciesConstructor = __webpack_require__("ebd6");
-var promiseResolve = __webpack_require__("bcaa");
-
-$export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
-  var C = speciesConstructor(this, core.Promise || global.Promise);
-  var isFunction = typeof onFinally == 'function';
-  return this.then(
-    isFunction ? function (x) {
-      return promiseResolve(C, onFinally()).then(function () { return x; });
-    } : onFinally,
-    isFunction ? function (e) {
-      return promiseResolve(C, onFinally()).then(function () { throw e; });
-    } : onFinally
-  );
-} });
-
-
-/***/ }),
-
 /***/ "0d58":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -470,6 +442,9 @@ var slicedToArray = __webpack_require__("9393");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.entries.js
 var es7_object_entries = __webpack_require__("ffc1");
 
@@ -501,6 +476,9 @@ function _nonIterableSpread() {
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
 }
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.promise.js
+var es6_promise = __webpack_require__("551c");
+
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/objectSpread.js
 var objectSpread = __webpack_require__("c93e");
 
@@ -509,15 +487,6 @@ var es6_function_name = __webpack_require__("7f7f");
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/objectWithoutProperties.js
 var objectWithoutProperties = __webpack_require__("133d");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
-var es6_array_iterator = __webpack_require__("cadf");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.promise.js
-var es6_promise = __webpack_require__("551c");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.promise.finally.js
-var es7_promise_finally = __webpack_require__("097d");
 
 // EXTERNAL MODULE: ./src/utils/bindEvents.js
 var bindEvents = __webpack_require__("3c1a");
@@ -530,7 +499,6 @@ var mapElementMixin = __webpack_require__("8fc8");
 
 // CONCATENATED MODULE: ./src/components/mapElementFactory/mapElementFactory.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mappedPropsToVueProps; });
-
 
 
 
@@ -701,16 +669,6 @@ function mappedPropsToVueProps(mappedProps) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cadf");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("551c");
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("097d");
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
 /*
 Mixin for objects that are mounted by Google Maps
 Javascript API.
@@ -964,9 +922,12 @@ module.exports = Object.create || function create(O, Properties) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bindProps; });
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ac6a");
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("456d");
-/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("150f");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cadf");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("456d");
+/* harmony import */ var core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_keys__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("150f");
+
 
 
 
@@ -1022,7 +983,7 @@ function bindProps(vueInst, googleMapsInst, props, options) {
         deep: type === Object
       });
     } else {
-      Object(_utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(vueInst, trackProperties.map(function (prop) {
+      Object(_utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(vueInst, trackProperties.map(function (prop) {
         return "".concat(attribute, ".").concat(prop);
       }), function () {
         googleMapsInst[setMethodName](vueInst[attribute]);
@@ -1070,14 +1031,17 @@ $exports.store = store;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c93e");
-/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("c5f6");
-/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_bindEvents_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3c1a");
-/* harmony import */ var _utils_bindProps_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("2b19");
-/* harmony import */ var _utils_mountableMixin_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("1be3");
-/* harmony import */ var _utils_TwoWayBindingWrapper_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("71f7");
-/* harmony import */ var _utils_WatchPrimitiveProperties_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("150f");
-/* harmony import */ var _components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("1a46");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("551c");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("c5f6");
+/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_bindEvents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("3c1a");
+/* harmony import */ var _utils_bindProps_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("2b19");
+/* harmony import */ var _utils_mountableMixin_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("1be3");
+/* harmony import */ var _utils_TwoWayBindingWrapper_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("71f7");
+/* harmony import */ var _utils_WatchPrimitiveProperties_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("150f");
+/* harmony import */ var _components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("1a46");
+
 
 
 
@@ -1153,8 +1117,8 @@ var customMethods = {
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_utils_mountableMixin_js__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]],
-  props: Object(_components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_7__[/* mappedPropsToVueProps */ "b"])(props),
+  mixins: [_utils_mountableMixin_js__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]],
+  props: Object(_components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_8__[/* mappedPropsToVueProps */ "b"])(props),
   provide: function provide() {
     var _this = this;
 
@@ -1196,16 +1160,16 @@ var customMethods = {
       // getting the DOM element where to create the map
       var element = _this2.$refs['vue-map']; // creating the map
 
-      var options = Object(_Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, _this2.options, Object(_utils_bindProps_js__WEBPACK_IMPORTED_MODULE_3__[/* getPropsValues */ "b"])(_this2, props));
+      var options = Object(_Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, _this2.options, Object(_utils_bindProps_js__WEBPACK_IMPORTED_MODULE_4__[/* getPropsValues */ "b"])(_this2, props));
 
       delete options.options;
       _this2.$mapObject = new google.maps.Map(element, options); // binding properties (two and one way)
 
-      Object(_utils_bindProps_js__WEBPACK_IMPORTED_MODULE_3__[/* bindProps */ "a"])(_this2, _this2.$mapObject, props); // binding events
+      Object(_utils_bindProps_js__WEBPACK_IMPORTED_MODULE_4__[/* bindProps */ "a"])(_this2, _this2.$mapObject, props); // binding events
 
-      Object(_utils_bindEvents_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_this2, _this2.$mapObject, events); // manually trigger center and zoom
+      Object(_utils_bindEvents_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_this2, _this2.$mapObject, events); // manually trigger center and zoom
 
-      Object(_utils_TwoWayBindingWrapper_js__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(function (increment, decrement, shouldUpdate) {
+      Object(_utils_TwoWayBindingWrapper_js__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(function (increment, decrement, shouldUpdate) {
         _this2.$mapObject.addListener('center_changed', function () {
           if (shouldUpdate()) {
             _this2.$emit('center_changed', _this2.$mapObject.getCenter());
@@ -1220,7 +1184,7 @@ var customMethods = {
           _this2.$mapObject.setCenter(_this2.finalLatLng);
         };
 
-        Object(_utils_WatchPrimitiveProperties_js__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(_this2, ['finalLat', 'finalLng'], updateCenter);
+        Object(_utils_WatchPrimitiveProperties_js__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(_this2, ['finalLat', 'finalLng'], updateCenter);
       });
 
       _this2.$mapObject.addListener('zoom_changed', function () {
@@ -2701,16 +2665,6 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cadf");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("551c");
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("097d");
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
 /**
  * @class MapElementMixin
  *
@@ -4272,22 +4226,16 @@ var events = ['domready', 'closeclick', 'content_changed'];
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c93e");
-/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("c5f6");
-/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("cadf");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("551c");
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("097d");
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_bindEvents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("3c1a");
-/* harmony import */ var _utils_bindProps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("2b19");
-/* harmony import */ var _utils_mountableMixin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("1be3");
-/* harmony import */ var _utils_TwoWayBindingWrapper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("71f7");
-/* harmony import */ var _utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("150f");
-/* harmony import */ var _components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("1a46");
-
-
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("551c");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("c5f6");
+/* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_bindEvents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("3c1a");
+/* harmony import */ var _utils_bindProps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("2b19");
+/* harmony import */ var _utils_mountableMixin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("1be3");
+/* harmony import */ var _utils_TwoWayBindingWrapper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("71f7");
+/* harmony import */ var _utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("150f");
+/* harmony import */ var _components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("1a46");
 
 
 
@@ -4335,8 +4283,8 @@ var props = {
 };
 var events = ['closeclick', 'status_changed'];
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [_utils_mountableMixin__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"]],
-  props: Object(_components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_10__[/* mappedPropsToVueProps */ "b"])(props),
+  mixins: [_utils_mountableMixin__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]],
+  props: Object(_components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_8__[/* mappedPropsToVueProps */ "b"])(props),
   replace: false,
   // necessary for css styles
   methods: {
@@ -4389,16 +4337,16 @@ var events = ['closeclick', 'status_changed'];
       // getting the DOM element where to create the map
       var element = _this2.$refs['vue-street-view-pano']; // creating the map
 
-      var options = Object(_Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, _this2.options, Object(_utils_bindProps__WEBPACK_IMPORTED_MODULE_6__[/* getPropsValues */ "b"])(_this2, props));
+      var options = Object(_Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectSpread__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, _this2.options, Object(_utils_bindProps__WEBPACK_IMPORTED_MODULE_4__[/* getPropsValues */ "b"])(_this2, props));
 
       delete options.options;
       _this2.$panoObject = new google.maps.StreetViewPanorama(element, options); // binding properties (two and one way)
 
-      Object(_utils_bindProps__WEBPACK_IMPORTED_MODULE_6__[/* bindProps */ "a"])(_this2, _this2.$panoObject, props); // binding events
+      Object(_utils_bindProps__WEBPACK_IMPORTED_MODULE_4__[/* bindProps */ "a"])(_this2, _this2.$panoObject, props); // binding events
 
-      Object(_utils_bindEvents__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(_this2, _this2.$panoObject, events); // manually trigger position
+      Object(_utils_bindEvents__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_this2, _this2.$panoObject, events); // manually trigger position
 
-      Object(_utils_TwoWayBindingWrapper__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])(function (increment, decrement, shouldUpdate) {
+      Object(_utils_TwoWayBindingWrapper__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(function (increment, decrement, shouldUpdate) {
         // Panos take a while to load
         increment();
 
@@ -4416,7 +4364,7 @@ var events = ['closeclick', 'status_changed'];
           _this2.$panoObject.setPosition(_this2.finalLatLng);
         };
 
-        Object(_utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this2, ['finalLat', 'finalLng'], updateCenter);
+        Object(_utils_WatchPrimitiveProperties__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(_this2, ['finalLat', 'finalLng'], updateCenter);
       });
 
       _this2.$panoPromiseDeferred.resolve(_this2.$panoObject);
@@ -5172,16 +5120,7 @@ var es6_promise = __webpack_require__("551c");
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/objectSpread.js
 var objectSpread = __webpack_require__("c93e");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
-var es6_array_iterator = __webpack_require__("cadf");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.promise.finally.js
-var es7_promise_finally = __webpack_require__("097d");
-
 // CONCATENATED MODULE: ./src/utils/lazyValue.js
-
-
-
 // This piece of code was orignally written by sindresorhus and can be seen here
 // https://github.com/sindresorhus/lazy-value/blob/master/index.js
 /* harmony default export */ var lazyValue = (function (fn) {
@@ -5198,6 +5137,9 @@ var es7_promise_finally = __webpack_require__("097d");
 });
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
+var es6_array_iterator = __webpack_require__("cadf");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
 var es6_object_keys = __webpack_require__("456d");
@@ -5219,6 +5161,7 @@ function _typeof(obj) {
   return _typeof(obj);
 }
 // CONCATENATED MODULE: ./src/manager.js
+
 
 
 
@@ -5430,9 +5373,6 @@ var slicedToArray = __webpack_require__("9393");
 // CONCATENATED MODULE: ./src/components/polyline/polyline.js
 
 
-
-
-
 var polyline_props = {
   draggable: {
     type: Boolean
@@ -5505,9 +5445,6 @@ var polyline_events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mou
   }
 }));
 // CONCATENATED MODULE: ./src/components/polygon/polygon.js
-
-
-
 
 
 var polygon_props = {
@@ -5631,9 +5568,6 @@ var polygon_events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mous
 // CONCATENATED MODULE: ./src/components/circle/circle.js
 
 
-
-
-
 var circle_props = {
   center: {
     type: Object,
@@ -5668,9 +5602,6 @@ var circle_events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mouse
 }));
 // CONCATENATED MODULE: ./src/components/rectangle/rectangle.js
 
-
-
-
 var rectangle_props = {
   bounds: {
     type: Object,
@@ -5698,14 +5629,14 @@ var rectangle_events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'mo
   },
   events: rectangle_events
 }));
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0595ba96-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/infoWindow/infoWindow.vue?vue&type=template&id=8bbf426e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3a86e180-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/infoWindow/infoWindow.vue?vue&type=template&id=8bbf426e&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{ref:"flyaway"},[_vm._t("default")],2)])}
 var staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/infoWindow/infoWindow.vue?vue&type=template&id=8bbf426e&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/infoWindow/infoWindow.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/infoWindow/infoWindow.vue?vue&type=script&lang=js&
 //
 //
 //
@@ -5836,14 +5767,14 @@ var component = normalizeComponent(
 
 component.options.__file = "infoWindow.vue"
 /* harmony default export */ var infoWindow = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0595ba96-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/map/map.vue?vue&type=template&id=1301a8d3&
-var mapvue_type_template_id_1301a8d3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-map-container"},[_c('div',{ref:"vue-map",staticClass:"vue-map"}),_c('div',{staticClass:"vue-map-hidden"},[_vm._t("default")],2),_vm._t("visible")],2)}
-var mapvue_type_template_id_1301a8d3_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3a86e180-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/map/map.vue?vue&type=template&id=010d5bc0&
+var mapvue_type_template_id_010d5bc0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-map-container"},[_c('div',{ref:"vue-map",staticClass:"vue-map"}),_c('div',{staticClass:"vue-map-hidden"},[_vm._t("default")],2),_vm._t("visible")],2)}
+var mapvue_type_template_id_010d5bc0_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/map/map.vue?vue&type=template&id=1301a8d3&
+// CONCATENATED MODULE: ./src/components/map/map.vue?vue&type=template&id=010d5bc0&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/map/map.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/map/map.vue?vue&type=script&lang=js&
 //
 //
 //
@@ -5873,8 +5804,8 @@ var mapvue_type_style_index_0_lang_css_ = __webpack_require__("64bb");
 
 var map_component = normalizeComponent(
   map_mapvue_type_script_lang_js_,
-  mapvue_type_template_id_1301a8d3_render,
-  mapvue_type_template_id_1301a8d3_staticRenderFns,
+  mapvue_type_template_id_010d5bc0_render,
+  mapvue_type_template_id_010d5bc0_staticRenderFns,
   false,
   null,
   null,
@@ -5884,17 +5815,14 @@ var map_component = normalizeComponent(
 
 map_component.options.__file = "map.vue"
 /* harmony default export */ var map = (map_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0595ba96-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/streetViewPanorama/streetViewPanorama.vue?vue&type=template&id=7ce1a81c&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3a86e180-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/streetViewPanorama/streetViewPanorama.vue?vue&type=template&id=7ce1a81c&
 var streetViewPanoramavue_type_template_id_7ce1a81c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"vue-street-view-pano-container"},[_c('div',{ref:"vue-street-view-pano",staticClass:"vue-street-view-pano"}),_vm._t("default")],2)}
 var streetViewPanoramavue_type_template_id_7ce1a81c_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/streetViewPanorama/streetViewPanorama.vue?vue&type=template&id=7ce1a81c&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/streetViewPanorama/streetViewPanorama.vue?vue&type=script&lang=js&
-
-
-
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/streetViewPanorama/streetViewPanorama.vue?vue&type=script&lang=js&
 //
 //
 //
@@ -5932,7 +5860,7 @@ var streetViewPanorama_component = normalizeComponent(
 
 streetViewPanorama_component.options.__file = "streetViewPanorama.vue"
 /* harmony default export */ var streetViewPanorama = (streetViewPanorama_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0595ba96-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/placeInput/placeInput.vue?vue&type=template&id=b36a4ac0&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3a86e180-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/placeInput/placeInput.vue?vue&type=template&id=b36a4ac0&
 var placeInputvue_type_template_id_b36a4ac0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',[_c('span',{domProps:{"textContent":_vm._s(_vm.label)}}),_c('input',{ref:"input",class:_vm.className,attrs:{"type":"text","placeholder":_vm.placeholder}})])}
 var placeInputvue_type_template_id_b36a4ac0_staticRenderFns = []
 
@@ -6056,14 +5984,14 @@ var placeInput_component = normalizeComponent(
 
 placeInput_component.options.__file = "placeInput.vue"
 /* harmony default export */ var placeInput = (placeInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0595ba96-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/autocomplete/autocomplete.vue?vue&type=template&id=6dc1f606&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3a86e180-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/autocomplete/autocomplete.vue?vue&type=template&id=6dc1f606&
 var autocompletevue_type_template_id_6dc1f606_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{ref:"input",attrs:{"type":"text","placeholder":_vm.placeholder},domProps:{"value":_vm.value}})}
 var autocompletevue_type_template_id_6dc1f606_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/autocomplete/autocomplete.vue?vue&type=template&id=6dc1f606&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/autocomplete/autocomplete.vue?vue&type=script&lang=js&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/autocomplete/autocomplete.vue?vue&type=script&lang=js&
 //
 //
 //
@@ -6259,18 +6187,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Users_richard_Desktop_Workspace_vue_google_maps_node_modules_babel_runtime_helpers_builtin_es6_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("133d");
 /* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("c5f6");
 /* harmony import */ var core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_number_constructor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("cadf");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("551c");
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("097d");
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _google_markerclusterer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("967a");
-/* harmony import */ var _google_markerclusterer__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_google_markerclusterer__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("1a46");
-
-
-
+/* harmony import */ var _google_markerclusterer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("967a");
+/* harmony import */ var _google_markerclusterer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_google_markerclusterer__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("1a46");
 
 
 
@@ -6310,18 +6229,18 @@ var props = {
   }
 };
 var events = ['click', 'rightclick', 'dblclick', 'drag', 'dragstart', 'dragend', 'mouseup', 'mousedown', 'mouseover', 'mouseout'];
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])({
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_mapElementFactory_mapElementFactory__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])({
   mappedProps: props,
   events: events,
   name: 'cluster',
   ctr: function ctr() {
-    if (typeof _google_markerclusterer__WEBPACK_IMPORTED_MODULE_6___default.a === 'undefined') {
+    if (typeof _google_markerclusterer__WEBPACK_IMPORTED_MODULE_3___default.a === 'undefined') {
       /* eslint-disable no-console */
       console.error('MarkerClusterer is not installed! require() it or include it from https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js');
       throw new Error('MarkerClusterer is not installed! require() it or include it from https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer.js');
     }
 
-    return _google_markerclusterer__WEBPACK_IMPORTED_MODULE_6___default.a;
+    return _google_markerclusterer__WEBPACK_IMPORTED_MODULE_3___default.a;
   },
   ctrArgs: function ctrArgs(_ref) {
     var map = _ref.map,

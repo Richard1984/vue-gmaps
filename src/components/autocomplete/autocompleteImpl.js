@@ -1,6 +1,6 @@
-import {bindProps, getPropsValues} from '@/utils/bindProps'
+import { bindProps, getPropsValues } from '@/utils/bindProps'
 import downArrowSimulator from '@/utils/simulateArrowDown'
-import {mappedPropsToVueProps} from '@/components/mapElementFactory/mapElementFactory'
+import { mappedPropsToVueProps } from '@/components/mapElementFactory/mapElementFactory'
 
 const mappedProps = {
   bounds: {
